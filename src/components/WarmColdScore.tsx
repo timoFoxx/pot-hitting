@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {Cold, GameEvent, Warm, Win} from '../lib/Game'
-import {StyledMessageContainer, StyledMessageContainerCold, StyledMessageContainerWarm} from "../styles/Layout";
+import {StyledMessageContainerWon, StyledMessageContainerCold, StyledMessageContainerWarm} from "../styles/Layout";
 
 interface ScoreProps {
     event: GameEvent | null
@@ -9,11 +9,11 @@ interface ScoreProps {
 
 export const WarmColdScore = ({ event} : ScoreProps) => {
     if (event instanceof Win) {
-        return (<StyledMessageContainer>Congratulations, You scored amazingly good, like {event.score}!</StyledMessageContainer>)
+        return (<StyledMessageContainerWon>Congratulations, You scored amazingly good, like {event.score}!</StyledMessageContainerWon>)
     } else if (event instanceof Cold) {
-        return (<StyledMessageContainerCold>Cold</StyledMessageContainerCold>)
+        return (<StyledMessageContainerCold>You are getting: Colder</StyledMessageContainerCold>)
     } else if (event instanceof Warm) {
-        return (<StyledMessageContainerWarm>Warm</StyledMessageContainerWarm>)
+        return (<StyledMessageContainerWarm>You are getting: Warm</StyledMessageContainerWarm>)
     } else {
         return null
     }

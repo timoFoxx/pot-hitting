@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import { StyledPotGame } from "../styles/Layout";
 import {PotCoords} from "../lib/GameData";
 
-import {GameEvent, Point, Warm} from '../lib/Game'
+import {GameEvent, Point, Warm, Win} from '../lib/Game'
 
 interface PotGameCanvasProps {
     width: number
@@ -14,11 +14,10 @@ interface PotGameCanvasProps {
 
 
 export const PotGameCanvas = (props: PotGameCanvasProps) => {
+
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     const getCoordinates = (event: MouseEvent): Point  => {
-
-
         if (canvasRef.current) {
             const canvas: HTMLCanvasElement = canvasRef.current;
             return new Point(event.pageX - canvas.offsetLeft, event.pageY - canvas.offsetTop)
@@ -32,24 +31,24 @@ export const PotGameCanvas = (props: PotGameCanvasProps) => {
             return;
         }
 
+        //render pot, if won
+        if (canvasRef.current &&  props.gameEvent instanceof Win) {
+            const context = canvasRef.current.getContext('2d')
+            if (context) {
+                context.fillStyle = '#000000'
+                context.fillRect(PotCoords.potX, PotCoords.potY, 20, 20);
+
+                canvasRef.current.removeEventListener('click', (event: MouseEvent) => {
+                    props.onClick(getCoordinates(event));
+                }, false);
+
+            }
+
+        }
+
         canvasRef.current.addEventListener('click', (event: MouseEvent) => {
 
             props.onClick(getCoordinates(event));
-            if (canvasRef.current) {
-                if (props.gameEvent instanceof Warm) {
-                    const context = canvasRef.current.getContext('2d')
-                    if (context) {
-                        context.fillStyle = '#000000'
-                        context.fillRect(PotCoords.potX, PotCoords.potY, 20, 20);
-
-                        canvasRef.current.removeEventListener('click', (event: MouseEvent) => {
-                            props.onClick(getCoordinates(event));
-                        }, false);
-
-                    }
-                }
-            }
-
         })
 
     },[])

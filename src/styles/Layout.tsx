@@ -32,11 +32,16 @@ export const StyledMessageContainer = styled.div`
 
 
 export const StyledMessageContainerCold = styled(StyledMessageContainer)`
-  
+  color: #00448e;
 `;
 
 export const StyledMessageContainerWarm = styled(StyledMessageContainer)`
-  
+  color: #a10618;
 `;
 
+
+export const StyledMessageContainerWon = styled(StyledMessageContainer)`
+  font-weight: bold;
+  font-size: 16px;
+`;
 

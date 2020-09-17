@@ -26,9 +26,7 @@ export const App = (props: AppProps) => {
           <StyledContainer>
               <StyledPrimaryHeadline>Pott-hitting Game</StyledPrimaryHeadline>
               <PotGameCanvas width={props.width} height={props.height} onClick={onClick} gameEvent={lastEvent} />
-              <StyledMessageContainer>You are getting:
-                  <WarmColdScore event={lastEvent} />
-              </StyledMessageContainer>
+              <WarmColdScore event={lastEvent} />
           </StyledContainer>
       </>
     );
