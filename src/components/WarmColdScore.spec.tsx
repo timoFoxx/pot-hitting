@@ -8,4 +8,5 @@ describe('WarmColdScore', () => {
     test('should render according to the snapshot when won', () => {
         expect(renderer.create(<WarmColdScore event={new Win(0)} />).toJSON()).toMatchSnapshot()
     })
+
 })

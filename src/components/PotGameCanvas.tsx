@@ -33,17 +33,15 @@ export const PotGameCanvas = (props: PotGameCanvasProps) => {
         if (!canvasRef.current) {
             return;
         }
-        
+
         //render pot, if won
         if (props.gameEvent instanceof Win) {
+            //remove mouse event
+            canvasRef.current.removeEventListener('click', handleMouseClick);
             const context = canvasRef.current.getContext('2d')
             if (context) {
                 context.fillStyle = '#000000'
                 context.fillRect(PotCoords.potX, PotCoords.potY, 20, 20);
-
-                canvasRef.current.removeEventListener('click', (event: MouseEvent) => {
-                }, false);
-
             }
 
         }

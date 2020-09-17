@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WarmColdScore should render according to the snapshot when won 1`] = `
+<div
+  className="sc-hKFyIo sc-gKAblj cUVHgQ frNQAl"
+>
+  Congratulations, You scored amazingly good, like 
+  0
+  !
+</div>
+`;

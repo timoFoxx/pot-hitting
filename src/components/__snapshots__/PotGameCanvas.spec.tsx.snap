@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PotGameCanvas should render according to the snapshot when created 1`] = `
+<canvas
+  className="sc-dlnjPT cjkAhu"
+  height={600}
+  width={500}
+/>
+`;
+
+exports[`PotGameCanvas should render according to the snapshot when won 1`] = `
+<canvas
+  className="sc-dlnjPT cjkAhu"
+  height={600}
+  width={500}
+/>
+`;
