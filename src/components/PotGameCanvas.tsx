@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useRef } from 'react'
 import { StyledPotGame } from "../styles/Layout";
 import {PotCoords} from "../lib/GameData";
@@ -17,6 +17,10 @@ export const PotGameCanvas = (props: PotGameCanvasProps) => {
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
+    const handleMouseClick = useCallback((event: MouseEvent) => {
+        props.onClick(getCoordinates(event));
+    }, []);
+
     const getCoordinates = (event: MouseEvent): Point  => {
         if (canvasRef.current) {
             const canvas: HTMLCanvasElement = canvasRef.current;
@@ -25,33 +29,28 @@ export const PotGameCanvas = (props: PotGameCanvasProps) => {
     };
 
 
-
     useEffect(() => {
         if (!canvasRef.current) {
             return;
         }
-
+        
         //render pot, if won
-        if (canvasRef.current &&  props.gameEvent instanceof Win) {
+        if (props.gameEvent instanceof Win) {
             const context = canvasRef.current.getContext('2d')
             if (context) {
                 context.fillStyle = '#000000'
                 context.fillRect(PotCoords.potX, PotCoords.potY, 20, 20);
 
                 canvasRef.current.removeEventListener('click', (event: MouseEvent) => {
-                    props.onClick(getCoordinates(event));
                 }, false);
 
             }
 
         }
 
-        canvasRef.current.addEventListener('click', (event: MouseEvent) => {
+        canvasRef.current.addEventListener('click', handleMouseClick);
 
-            props.onClick(getCoordinates(event));
-        })
-
-    },[])
+    },[props.gameEvent])
 
 
     return <StyledPotGame ref={canvasRef} height={props.height} width={props.width} />;
