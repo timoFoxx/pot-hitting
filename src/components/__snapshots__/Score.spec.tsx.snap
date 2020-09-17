@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Score should render according to the snapshot when won 1`] = `
+<p>
+  You scored amazingly good, like 
+  0
+  !
+</p>
+`;
